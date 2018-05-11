@@ -1,0 +1,48 @@
+<html>
+	<head>
+	  <title>Chat</title>
+	  <% include ../partials/head.ejs %>
+	  <script src="/assets/scripts/websocket.js"></script>
+	  <script src="/assets/scripts/functions.js"></script>
+	  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/themes.css" />
+	  <script src="/assets/scripts/escape-html.js"></script>
+	</head>
+	<body class="dark-theme">
+	  <% include ../partials/navbar.ejs %>
+	  <h1>CHAT</h1>
+	  <p id="status">Status: Disconnected</p>
+	  <input id="name" placeholder="Name"/>
+	  <div id="log" style="width:60em;height:30em;overflow:auto;border:1px solid white"></div>
+		<form id="chatform">
+			<textarea id="message" type="text" style="width:25em;height:4em"></textarea>
+
+			<input id="send" type="button" value="Send"/>
+
+		</form>
+		<footer>
+		  <hr/>
+		  <button id="theme" class="btn btn-primary">Switch Theme</button>
+		  <p>Copyright © Free TNT</p>
+		</footer>
+	  <% include ../partials/scripts.ejs %>
+	  <script>
+	    $("#send").on("click", (event) => {
+	       const msg = $("#message").val();
+	       if(!msg) return alert("Cannot send empty message");
+	       if(msg && msg.length > 500) return alert("Message too long, use below 500 characters please");
+	       try {
+	         sendMessage(msg);
+	         $("#message").val("").focus();
+	       } catch(err) {
+	         alert("ERROR: " + err);
+	       }
+	    });
+	    
+	    $("#theme").on("click", (event) => {
+	      $("body").toggleClass("dark-theme");
+	      $("body").toggleClass("light-theme");
+	    });
+	    
+	  </script>
+	</body>
+</html>
