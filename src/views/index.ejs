@@ -26,7 +26,6 @@
 		</footer>
 	  <% include ../partials/scripts.ejs %>
 	  <script>
-	    $("#chatform").on("keydown", (ev) => alert(ev.keyCode));
 	    $("#send").on("click", (event) => {
 	       const msg = $("#message").val();
 	       if(!msg) return alert("Cannot send empty message");
