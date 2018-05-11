@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://localhost:3000/ws");
+const ws = new WebSocket("ws://freetnt.glitch.me/ws");
 
 
 ws.onopen = function() {
