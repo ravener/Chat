@@ -26,6 +26,10 @@
 		</footer>
 	  <% include ../partials/scripts.ejs %>
 	  <script>
+	    $("#message").on("keydown", (event) => {
+	      const code = event.keyCode ? event.keyCode : event.which;
+	      if(code === 188 && !event.shiftKey) $("#send").trigger("click");
+	    });
 	    $("#send").on("click", (event) => {
 	       const msg = $("#message").val();
 	       if(!msg) return alert("Cannot send empty message");
